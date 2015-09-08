@@ -1,0 +1,39 @@
+#+Title: Static Gulp for Github Pages
+
+* What is this?
+A template project so that one can use to quickly create static websites for github pages using modern preprocessor tools (such as stylus and jade).
+
+One additional design goal was to enable seeing changes immediately in the browser as code is changed, without needing to refresh -- this is done using Browsersync.
+
+* Setup
+The setup is slightly different if you are making a regular github page vs. a profile page.
+
+** Normal github pages
+1. Clone the =master= branch as the "root" directory.
+3. Within that "root" directory, check out the =gh-pages= branch, calling the folder containing it =dist=.
+4. Run =npm install= in the "root" directory.
+
+So you now have two copies of the repo, with =master= containing =gh-pages= -- just don't check =dist= (=gh-pages=) into =master=!".
+
+** Github profile page
+1. Clone the =source= branch as the "root" directory.
+2. Within that "root" directory, check out the =master= branch, calling the folder containing it =dist=.
+3. Run =npm install= in the "root" directory.
+
+So you now have two copies of the repo, with =source= containing =master= -- just don't check in =dist= (=master=) into =source=!
+
+** Pushing to a new github repo
+To push to a new github repo, you will also need to remove the existing "remote" and add a new one.
+
+1. =git remote remove origin=
+2. =git remote add origin {repo-url}=
+
+You will probably want to do this to both repos (=master= and either =gh-pages= or =source=) so that you can check in both your source and site to github. 
+
+* Usage
+- Run with =gulp= from the source directory to compile the source and output into =dist=.
+- Commit in the root directory to update the source.
+- Commit and push in the dist directory to update the production version.
+
+* Issues
+- Browsersync can sometimes fail, possibly due to a race condition. This may be fixed by modifying =gulpfile.js= or waiting for gulp 4.0 (see http://www.browsersync.io/docs/gulp/ for more info).
